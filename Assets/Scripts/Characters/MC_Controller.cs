@@ -19,7 +19,8 @@ public class MC_Controller : MonoBehaviour
     public float explosionForce = 50f;
     public float explosionRadius = 4f;
     public float explosionUpward = 0.4f;
-    private bool IamALIVE = true;
+    protected bool IamALIVE = true;
+    public static bool MCamALIVE = true;
     public float destroy_piece_time = 3f;
     public GameObject pieces_parent, SC_parent;
     public float speedTowardsMiddleSkateboard = 10f;
@@ -70,6 +71,12 @@ public class MC_Controller : MonoBehaviour
         {
             this.transform.position = new Vector2(middle_of_skateboard, this.transform.position.y);
         }
+
+        // Send alive status for MC
+        if(this.gameObject.tag == "MainCharacter")
+        {
+            MCamALIVE = IamALIVE;
+        }
     }
 
     // Check collisions
@@ -85,10 +92,12 @@ public class MC_Controller : MonoBehaviour
 
             // Death
             DieMC(keep_position);
+
         } else if(collision.collider.tag == "MarginWall")
         { // Side character
             IamALIVE = false;
             Destroy(this.gameObject);
+            ++GameManager.score;
         }
         else if(collision.collider.tag == "Column")
         {
@@ -99,6 +108,7 @@ public class MC_Controller : MonoBehaviour
     // Death of character
     private void DieMC(Vector3 keep_position)
     {
+        IamALIVE = false;
         for (int i = 0; i < explosion_particles_spread_3D.x; ++i)
         {
             for (int j = 0; j < explosion_particles_spread_3D.y; ++j)
