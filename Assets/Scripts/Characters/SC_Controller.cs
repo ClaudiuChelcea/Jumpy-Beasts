@@ -5,8 +5,15 @@ using UnityEngine;
 
 public class SC_Controller : MC_Controller
 {
-    private void Start()
+    public float position_offset = 0f;
+
+    // Child class for side characters
+    private void Update()
     {
-        this.side_character = null;
+        // If I am not pushed back by a column, go back to default position
+        if (moving_back == false)
+        {
+            this.transform.position = new Vector2(middle_of_skateboard - position_offset, this.transform.position.y);
+        }
     }
 }

@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 1
+  m_Constraints: 4
 --- !u!61 &1399790856229188555
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 2.5
   side_character: {fileID: 0}
+  explosion_scale: {x: 0.2, y: 0.2, z: 0.2}
